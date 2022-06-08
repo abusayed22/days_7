@@ -4,7 +4,7 @@ const initialState = {
     users:[],
     user:{}
 }
-const crudReducer = (state=initialState,action) => {
+const allReducers = (state=initialState,action) => {
     switch (action.type) {
 
         case types.GET_DATA:
@@ -13,9 +13,35 @@ const crudReducer = (state=initialState,action) => {
                 users:action.payload
             }
             break;
+
+        case types.DELETE_DATA:
+            return{
+                ...state
+            }
+            break;
+
+        case types.SINGLE_STATE:
+            return{
+                ...state,
+                user:action.payload
+            }
+            break;
+
+        case types.UPDATE_DATA:
+            return{
+                ...state
+            }
+            break;
+
+        case types.ADD_DATA:
+            return{
+                ...state
+            }
+            break;
     
         default:
+            return state
             break;
     }
 }
-export default crudReducer;
+export default allReducers;

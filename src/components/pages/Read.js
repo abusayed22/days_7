@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { pre_delete_data, pre_get_data } from '../../redux/action/action';
 
 function Read() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const getUsers = useSelector(state => state.crud.users);
+  useEffect(() => {
+    dispatch(pre_get_data())
+  },[getUsers])
+
+  const deletehandler = (id) => {
+    dispatch(pre_delete_data(id))
+  }
+
   return (
     <div>
          <center><h1 style={{margin:'30px auto'}}>All Students</h1></center>
@@ -19,23 +33,23 @@ function Read() {
           </thead>
         <tbody>
 
-          {/* {allusers && allusers.map((obj) => ( */}
+          {getUsers && getUsers.map((obj) => (
 
-              <tr >
-              <th scope="row">{}</th>
+              <tr key={obj.id}>
+              <th scope="row">{obj.roll}</th>
 
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
+              <td>{obj.name}</td>
+              <td>{obj.birth}</td>
+              <td>{obj.phone}</td>
+              <td>{obj.address}</td>
               <td>
                 <div style={{display:'flex',justifyContent:'center'}}>
-                <button  className='btn btn-danger btn-sm ' style={{marginLeft:'5px',width:60,color:'#fff'}}>Delete</button>
-                <button  style={{marginLeft:'5px',width:50,color:'#fff'}} className='btn btn-info btn-sm'>Edit</button>
+                <button onClick={() => deletehandler(obj.id)} className='btn btn-danger btn-sm ' style={{marginLeft:'5px',width:60,color:'#fff'}}>Delete</button>
+                <button onClick={() =>(navigate(`/single/${obj.id}`))} style={{marginLeft:'5px',width:50,color:'#fff'}} className='btn btn-info btn-sm'>Edit</button>
                 </div>
               </td>
             </tr>
-            {/* ))} */}
+             ))} 
           </tbody>
         </table>
         

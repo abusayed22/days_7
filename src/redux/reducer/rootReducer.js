@@ -1,7 +1,7 @@
-import crudReducer from "./allReducers";
+import allReducers from "./allReducers";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    crud:crudReducer
+    crud:allReducers
 })
 export default rootReducer;

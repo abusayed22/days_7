@@ -3,6 +3,7 @@ import Read from "./components/pages/Read";
 import Home from "./components/pages/Home";
 import Header from "./components/partials/Header";
 import Add from "./components/pages/Add";
+import Single from "./components/pages/Single";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/read" element={<Read />} />
         <Route path="/add" element={<Add />} />
+        <Route path="/single/:id" element={<Single />} />
       </Routes>
     </div>
   );
